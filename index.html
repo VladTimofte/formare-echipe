@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formare Echipe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Formare Echipe</h1>
+      <div class="buttons">
+        <button onclick="shuffleTeams()">Așează aleatoriu</button>
+        <button onclick="shareWhatsApp()">Share pe WhatsApp</button>
+      </div>
+
+      <div class="teams">
+        <div class="team" id="team1">
+          <h2>Echipa 1</h2>
+          <ul class="player-list"></ul>
+        </div>
+        <div class="team" id="team2">
+          <h2>Echipa 2</h2>
+          <ul class="player-list"></ul>
+        </div>
+        <div class="team" id="team3">
+          <h2>Echipa 3</h2>
+          <ul class="player-list"></ul>
+        </div>
+      </div>
+
+      <div class="bench">
+        <h2>Rezerve</h2>
+        <ul class="player-list" id="bench"></ul>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
