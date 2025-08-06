@@ -31,12 +31,21 @@ function render() {
     const ul =
       document.querySelector(`#${teamId} .player-list`) ||
       document.querySelector(`#${teamId}`);
+
+    // ✅ Actualizează titlul cu numărul de jucători
+    const title = document.querySelector(`#${teamId} h2`);
+    const teamNumber =
+      teamId === "bench" ? "Rezerve" : `Echipa ${teamId.replace("team", "")}`;
+    const count = teams[teamId].length;
+    title.textContent = `${teamNumber} (${count})`;
+
+    // ✅ Afișează lista de jucători numerotată
     ul.innerHTML = "";
-    teams[teamId].forEach((player) => {
+    teams[teamId].forEach((player, index) => {
       const li = document.createElement("li");
       li.className = "player";
       li.innerHTML = `
-        <span>${player}</span>
+        <span>${index + 1}. ${player}</span>
         <div class="actions">${renderActions(teamId, player)}</div>
       `;
       ul.appendChild(li);
@@ -58,11 +67,20 @@ function renderActions(currentTeam, player) {
 }
 
 function shuffleTeams() {
-  const shuffled = [...allPlayers].sort(() => 0.5 - Math.random());
+  const shuffled = [...teams.bench].sort(() => 0.5 - Math.random());
+
   teams.team1 = shuffled.slice(0, 6);
   teams.team2 = shuffled.slice(6, 12);
   teams.team3 = shuffled.slice(12, 18);
-  teams.bench = [];
+
+  const selectedPlayers = new Set([
+    ...teams.team1,
+    ...teams.team2,
+    ...teams.team3,
+  ]);
+
+  teams.bench = teams.bench.filter((player) => !selectedPlayers.has(player));
+
   render();
 }
 
