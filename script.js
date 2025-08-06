@@ -67,6 +67,17 @@ function renderActions(currentTeam, player) {
 }
 
 function shuffleTeams() {
+  teams.bench = [
+    ...teams.bench,
+    ...teams.team1,
+    ...teams.team2,
+    ...teams.team3,
+  ];
+
+  teams.team1 = [];
+  teams.team2 = [];
+  teams.team3 = [];
+
   const shuffled = [...teams.bench].sort(() => 0.5 - Math.random());
 
   teams.team1 = shuffled.slice(0, 6);
